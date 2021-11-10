@@ -1,5 +1,24 @@
-export const add: Add = (x, y) => {
-  return x + y;
+import { useState, useMemo } from 'react';
+
+/**
+ * A hook that forces a render in a component.
+ */
+export const useRender: UseRenderHook = () => {
+  const [, setKey] = useState<symbol>(Symbol(0));
+
+  return useMemo<UseRender>(
+    () => ({
+      forceRender: () => setKey(Symbol(0)),
+    }),
+    [],
+  );
+};
+
+export interface UseRender {
+  /**
+   * `forceRender` - Function that triggers a render.
+   */
+  forceRender: () => void;
 }
 
-export type Add = (x: number, y: number) => number
+type UseRenderHook = () => UseRender;
