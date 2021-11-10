@@ -15,7 +15,7 @@ describe('useRender', () => {
     expect(forceRenderSpy).toBeCalled();
   });
 
-  it('should call `forceRender` 2 times', () => {
+  it('should call `forceRender` 3 times', () => {
     const { result } = renderHook(() => useRender());
     const { current } = result;
 
@@ -24,8 +24,9 @@ describe('useRender', () => {
     act(() => {
       current.forceRender();
       current.forceRender();
+      current.forceRender();
     });
 
-    expect(forceRenderSpy).toBeCalledTimes(2);
+    expect(forceRenderSpy).toBeCalledTimes(3);
   });
 });
